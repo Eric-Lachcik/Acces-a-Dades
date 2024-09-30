@@ -1,5 +1,5 @@
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AccesFileOutputX8157779R {
@@ -12,15 +12,18 @@ public class AccesFileOutputX8157779R {
     }
 
     public void copyFile() throws IOException {
-        try (FileInputStream fis = new FileInputStream(sourceFile);
-             FileOutputStream fos = new FileOutputStream(destFile)) {
+        try (FileInputStream FileInput = new FileInputStream(sourceFile);
+             FileOutputStream FileOutput = new FileOutputStream(destFile))
+        {
             int data;
-            while ((data = fis.read()) != -1) {
-                fos.write(data);
+            while ((data = FileInput.read()) != -1) {
+                FileOutput.write(data);
             }
-            System.out.println("File copied byte by byte to: " + destFile);
+            FileInput.close();
+            FileOutput.close();
+            System.out.println("File copied" + destFile);
         } catch (IOException e) {
-            throw new IOException("Error copying file byte by byte.");
+            throw new IOException("Error copying");
         }
     }
 }

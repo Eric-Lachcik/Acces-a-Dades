@@ -9,15 +9,17 @@ public class AccesFileInputX8157779R {
     }
 
     public void readFile() throws IOException {
-        try (FileInputStream fis = new FileInputStream(filePath)) {
+        try (FileInputStream FileInput = new FileInputStream(filePath))
+        {
             int data;
-            System.out.println("Reading file byte by byte:");
-            while ((data = fis.read()) != -1) {
+            System.out.println("Reading file");
+            while ((data = FileInput.read()) != -1) {
                 System.out.print((char) data);
             }
-            System.out.println(); // Newline after reading
+            FileInput.close();
+            System.out.println();
         } catch (IOException e) {
-            throw new IOException("File cannot be read (byte by byte).");
+            throw new IOException("File not readable");
         }
     }
 }

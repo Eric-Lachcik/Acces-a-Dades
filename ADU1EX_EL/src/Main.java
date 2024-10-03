@@ -1,5 +1,4 @@
 import java.io.*;
-import java.sql.SQLOutput;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -18,6 +17,7 @@ public class Main {
         AccesFileOutputX8157779R FileOutputer = new AccesFileOutputX8157779R(OriginalFileJPG, CopyFileJPG);
         FileX8157779R FileFilerPng = new FileX8157779R(CopyFileTXT);
         FileX8157779R FileFilerJpg = new FileX8157779R(CopyFileJPG);
+        
         String extension = getFileExtension(OriginalPathTXT);
 
         if (extension.equals("txt")) {

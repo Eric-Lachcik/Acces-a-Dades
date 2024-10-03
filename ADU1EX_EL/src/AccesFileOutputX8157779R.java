@@ -1,12 +1,9 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import java.io.*;
 public class AccesFileOutputX8157779R {
-    private String sourceFile;
-    private String destFile;
+    private File sourceFile;
+    private File destFile;
 
-    public AccesFileOutputX8157779R(String sourceFile, String destFile) {
+    public AccesFileOutputX8157779R(File sourceFile, File destFile) {
         this.sourceFile = sourceFile;
         this.destFile = destFile;
     }

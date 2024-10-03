@@ -1,9 +1,9 @@
 import java.io.*;
 public class AccesFileWriterX8157779R {
-    private String sourceFile;
-    private String destFile;
+    private File sourceFile;
+    private File destFile;
 
-    public AccesFileWriterX8157779R(String sourceFile, String destFile) {
+    public AccesFileWriterX8157779R(File sourceFile, File destFile) {
         this.sourceFile = sourceFile;
         this.destFile = destFile;
     }
@@ -19,7 +19,7 @@ public class AccesFileWriterX8157779R {
             FileWriter.close();
             System.out.println("File copied");
         } catch (IOException e) {
-            throw new IOException("File not readable");
+            throw new IOException("File not writeable");
         }
     }
 }

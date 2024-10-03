@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.SQLOutput;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -11,24 +12,20 @@ public class Main {
         AccesFileReaderX8157779R FileReader = new AccesFileReaderX8157779R(OriginalPathJPG);
         AccesFileWriterX8157779R FileWriter = new AccesFileWriterX8157779R(OriginalPathTXT, CopyPathTXT);
         AccesFileOutputX8157779R FileOutputer = new AccesFileOutputX8157779R(OriginalPathJPG, CopyPathJPG);
-        File Fichero1 = new File(OriginalPathTXT);
-        File Fichero2 = new File(OriginalPathJPG);
-        String extension = getFileExtension(OriginalPathJPG);
+        FileX8157779R FileFiler = new FileX8157779R(OriginalPathTXT);
+        String extension = getFileExtension(OriginalPathTXT);
         if (extension.equals("txt")) {
             try {
                 FileWriter.copyFile();
+                if(FileFiler.PermissionsRemover()){
+                    System.out.println("Read perms removed");
+                }else {
+                    System.out.println("Read perms not removed");
+                }
                 try {
-                    Fichero1.setReadable(false);
-                    System.out.println("Entro");
-                    try {
-                        FileInputer.readFile();
-                        System.out.println("Entro mas");
-                    } catch (IOException e) {
-                        System.out.println("YOU CAN NOT READ FILE");
-                    }
-                } catch (Exception e) {
-                    System.out.println("No la puso " + e.getMessage());
-                    throw new RuntimeException(e);
+                    FileInputer.readFile();
+                } catch (IOException e) {
+                    System.out.println("YOU CAN NOT READ FILE");
                 }
             } catch (IOException e) {
                 System.out.println("Error: File Not Copied or Found " + e.getMessage());
@@ -36,7 +33,7 @@ public class Main {
         } else if (extension.equals("jpg")) {
             FileOutputer.copyFile();
             try {
-                Fichero2.setReadable(false);
+
                 System.out.println("Entro");
                 try {
                     FileReader.readFile();

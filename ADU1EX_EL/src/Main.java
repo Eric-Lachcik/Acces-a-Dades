@@ -2,13 +2,13 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String OriginalPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\Original.txt";
+        String OriginalPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Original.txt";
         File OriginalFileTXT = new File(OriginalPathTXT);
-        String CopyPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\Copied.txt";
+        String CopyPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Copied.txt";
         File CopyFileTXT = new File(CopyPathTXT);
-        String OriginalPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\Pingu.jpg";
+        String OriginalPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Pingu.jpg";
         File OriginalFileJPG = new File(OriginalPathJPG);
-        String CopyPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\Copied1.txt";
+        String CopyPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Copied1.txt";
         File CopyFileJPG = new File(CopyPathJPG);
 
         AccesFileInputX8157779R FileInputer = new AccesFileInputX8157779R(OriginalPathTXT);

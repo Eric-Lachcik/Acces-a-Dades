@@ -35,3 +35,7 @@ Este proyecto implementa un sistema de gestión de archivos en Java que permite:
 En un principio, para iniciar la ejecución del programa basta con darle click al botón de play que acciona el run java.
 
 Para manejar el caso de los archivos con extensión `.jpg`, es necesario cambiar la variable path asignada en la función getFileExtension, que se encuentra en la línea 21 del código. Esta función es la encargada de detectar la extensión del archivo y, en función de esta, se ejecutarán las operaciones adecuadas.
+
+Para finalizar, es necesario añadir la ruta absoluta para que el programa funcione correctamente. Debes cambiar la ruta del archivo en String OriginalPathTXT para poder utilizar las clases de lectura y escritura. En el caso de los archivos JPG, debes modificar la ruta absoluta en String OriginalPathJPG. Todos estos cambios deben realizarse dentro de la clase principal. Y los archivos para tenerlo todo mas organizado se deben de poner dentro de la carpeta resources.
+
+PD:Quise implementar path relativos dentro del proyecto pero no me ha funcionado.

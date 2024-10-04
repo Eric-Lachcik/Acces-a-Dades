@@ -11,8 +11,8 @@ public class Main {
         String CopyPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Copied1.txt";
         File CopyFileJPG = new File(CopyPathJPG);
 
-        AccesFileInputX8157779R FileInputer = new AccesFileInputX8157779R(OriginalPathTXT);
-        AccesFileReaderX8157779R FileReader = new AccesFileReaderX8157779R(OriginalPathJPG);
+        AccesFileInputX8157779R FileInputer = new AccesFileInputX8157779R(OriginalPathJPG);
+        AccesFileReaderX8157779R FileReader = new AccesFileReaderX8157779R(OriginalPathTXT);
         AccesFileWriterX8157779R FileWriter = new AccesFileWriterX8157779R(OriginalFileTXT, CopyFileTXT);
         AccesFileOutputX8157779R FileOutputer = new AccesFileOutputX8157779R(OriginalFileJPG, CopyFileJPG);
         FileX8157779R FileFilerPng = new FileX8157779R(CopyFileTXT);

@@ -2,13 +2,13 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String OriginalPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Original.txt";
+        String OriginalPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX01_EL\\resources\\Original.txt";
         File OriginalFileTXT = new File(OriginalPathTXT);
-        String CopyPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Copied.txt";
+        String CopyPathTXT = "C:\\DAM2\\Acces-a-Dades\\ADU1EX01_EL\\resources\\Copied.txt";
         File CopyFileTXT = new File(CopyPathTXT);
-        String OriginalPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Pingu.jpg";
+        String OriginalPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX01_EL\\resources\\Pingu.jpg";
         File OriginalFileJPG = new File(OriginalPathJPG);
-        String CopyPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX_EL\\resources\\Copied1.txt";
+        String CopyPathJPG = "C:\\DAM2\\Acces-a-Dades\\ADU1EX01_EL\\resources\\Copied1.jpg";
         File CopyFileJPG = new File(CopyPathJPG);
 
         AccesFileInputX8157779R FileInputer = new AccesFileInputX8157779R(OriginalPathJPG);
@@ -18,7 +18,7 @@ public class Main {
         FileX8157779R FileFilerPng = new FileX8157779R(CopyFileTXT);
         FileX8157779R FileFilerJpg = new FileX8157779R(CopyFileJPG);
         
-        String extension = getFileExtension(OriginalPathTXT);
+        String extension = getFileExtension(OriginalPathJPG);
 
         if (extension.equals("txt")) {
             try {

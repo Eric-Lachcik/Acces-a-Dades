@@ -8,7 +8,11 @@ import org.w3c.dom.NodeList;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        File xml = new File("C:\\DAM2\\Acces-a-Dades\\ADU1EX02A_EL1\\resources\\llibres.xml");
+        File xmlRuta = new File("resources/llibres.xml");
+
+        String absolutePath = xmlRuta.getAbsolutePath();
+
+        File xml = new File(absolutePath);
 
         try{
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Acces-a-Dades">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ADU1EX01_EL.zip!/" />
+      <root url="jar://$PROJECT_DIR$/ADU1EX02B_EL.zip!/" />
+      <root url="jar://$PROJECT_DIR$/ADU1EX02A_EL1.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

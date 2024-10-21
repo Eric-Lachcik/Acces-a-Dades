@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ADU1EX01_EL/ADU1EX01_EL.iml" filepath="$PROJECT_DIR$/ADU1EX01_EL/ADU1EX01_EL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ADU1EX02A_EL1/ADU1EX02A_EL1.iml" filepath="$PROJECT_DIR$/ADU1EX02A_EL1/ADU1EX02A_EL1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ADU1EX02B_EL/ADU1EX02B_EL.iml" filepath="$PROJECT_DIR$/ADU1EX02B_EL/ADU1EX02B_EL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Acces-a-Dades.iml" filepath="$PROJECT_DIR$/.idea/Acces-a-Dades.iml" />
+    </modules>
+  </component>
+</project>

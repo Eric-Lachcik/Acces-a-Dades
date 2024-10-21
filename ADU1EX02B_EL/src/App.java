@@ -20,6 +20,7 @@ public class App {
 
             List<Llibre> llibres = handler.getLlibres();
             for (Llibre llibre : llibres) {
+                System.out.println("\r");
                 System.out.println(llibre);
             }
         } catch (SAXException | IOException e) {

@@ -1,18 +1,36 @@
-## Getting Started
+# Lectura de Archivos XML con SAX en Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Descripción de la funcionalidad desarrollada
 
-## Folder Structure
+Este proyecto implementa una funcionalidad de lectura y procesamiento de archivos XML utilizando el método SAX  en Java. Con esta herramienta podrás:
 
-The workspace contains two folders by default, where:
+- Leer y procesar archivos XML de manera eficiente.
+- Extraer información específica de los nodos dentro de los archivos XML.
+- Imprimir los detalles de los elementos encontrados de forma clara y organizada.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+### Clases Implementadas
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+1. **`App`**: La clase principal que se encarga de ejecutar el parser sobre el archivo XML.
+2. **`LlibreHandler`**: Clase que extiende de `DefaultHandler` para manejar los eventos SAX como el inicio y fin de elementos XML.
+3. **`Llibre`**: Clase POJO que representa un libro con atributos como título, autor, año y resumen.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+---
 
-## Dependency Management
+## Información sobre el ecosistema de desarrollo
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- **Sistema Operativo**: Windows 10 (aunque es compatible con cualquier sistema que soporte Java).
+- **IDE Recomendado**: IntelliJ IDEA.
+- **SDK de Java**: JDK 17 o superior.
+- **Librerías Utilizadas**: 
+  - `java.io` para la gestión de archivos.
+  - `javax.xml.parsers` para crear y configurar el `SAXParser`.
+  - `org.xml.sax` para el análisis y procesamiento de los archivos XML.
+
+Este proyecto utiliza solo las librerías estándar de Java y no requiere dependencias externas adicionales.
+
+---
+
+## Instrucciones de Uso
+Para utilizar el proyecto, coloca el archivo XML en la carpeta resources y ajusta la ruta correspondiente en la clase App. Luego, ejecuta el proyecto  haciendo clic en el botón de play.
+
+

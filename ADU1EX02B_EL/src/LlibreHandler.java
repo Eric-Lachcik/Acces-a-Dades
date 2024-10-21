@@ -18,7 +18,7 @@ public class LlibreHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         contingutActual = new StringBuilder();
         if (qName.equals("llibre")) {
-            llibreActual = new Llibre(null, null, 0, null);
+            llibreActual = new Llibre(null, null, null, null);
         }
     }
 
@@ -27,16 +27,16 @@ public class LlibreHandler extends DefaultHandler {
         if (llibreActual != null) {
             switch (qName) {
                 case "titol":
-                    llibreActual = new Llibre(contingutActual.toString(), llibreActual.getAutor(), llibreActual.getPreu(), llibreActual.getResum());
+                    llibreActual = new Llibre(contingutActual.toString(), llibreActual.getAutor(), llibreActual.getany(), llibreActual.getResum());
                     break;
                 case "autor":
-                    llibreActual = new Llibre(llibreActual.getTitol(), contingutActual.toString(), llibreActual.getPreu(), llibreActual.getResum());
+                    llibreActual = new Llibre(llibreActual.getTitol(), contingutActual.toString(), llibreActual.getany(), llibreActual.getResum());
                     break;
-                case "preu":
-                    llibreActual = new Llibre(llibreActual.getTitol(), llibreActual.getAutor(), Double.parseDouble(contingutActual.toString()), llibreActual.getResum());
+                case "any":
+                    llibreActual = new Llibre(llibreActual.getTitol(), llibreActual.getAutor(), Integer.parseInt(contingutActual.toString()), llibreActual.getResum());
                     break;
                 case "resum":
-                    llibreActual = new Llibre(llibreActual.getTitol(), contingutActual.toString(), llibreActual.getPreu(), contingutActual.toString());
+                    llibreActual = new Llibre(llibreActual.getTitol(), llibreActual.getAutor(), llibreActual.getany(), contingutActual.toString());
                     break;
                 case "llibre":
                     llibres.add(llibreActual);

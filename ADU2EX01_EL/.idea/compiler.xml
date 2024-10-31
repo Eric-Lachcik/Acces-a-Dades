@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ADU2EX01_EL" />
-        <module name="ADU1EX02C_EL" />
       </profile>
     </annotationProcessing>
   </component>

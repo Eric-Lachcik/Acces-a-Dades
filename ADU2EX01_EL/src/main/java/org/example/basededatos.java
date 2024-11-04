@@ -1,8 +1,5 @@
 package org.example;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class basededatos {
     private static final String url = "jdbc:sqlite:C:\\DAM2\\ADU2EX01_EL\\empleados.db";;
@@ -17,13 +14,40 @@ public class basededatos {
         }
     }
 
+    public static void mostrarDatos() {
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                leerDatos(conn);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void leerDatos(Connection conn) {
+        try (Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM empleados";
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String nom = rs.getString("nombre");
+                int caducidad = rs.getInt("edad");
+                String email = rs.getString("email");
+
+                System.out.println("Empleado " + id + nom + caducidad + email);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static void createEmpleados(Connection conn) {
         String sql = "CREATE TABLE IF NOT EXISTS empleados (" +
-                "id TEXT PRIMARY KEY, " +
-                "nombre TEXT NOT NULL, " +
-                "apellido TEXT NOT NULL, " +
-                "email TEXT NOT NULL, " +
-                "telefono TEXT NOT NULL);";
+                "id INT PRIMARY KEY, " +
+                "nombre VARCHAR(100) NOT NULL, " +
+                "edad INT NOT NULL, " +
+                "email VARCHAR(100) NOT NULL, ";
 
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);

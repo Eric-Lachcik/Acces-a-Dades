@@ -1,49 +1,50 @@
 package org.example;
 import java.util.Scanner;
-import java.sql.*;
-import java.io.*;
+
 
 public class Main {
     public static void main(String[] args) {
         //Iniciamos un Scanner.
         Scanner sc = new Scanner(System.in);
+        //Booleano de control del while. 
+        boolean continuar = true;
 
-        try{
-            //Iniciamos la base de datos.
-            basededatos.inicializar();
+        while(continuar){
+            try{
+                //Iniciamos la base de datos.
+                basededatos.inicializar();
 
-            System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: '1.Crear' , '2.Leer' o '3.Salir' ");
-            int opcion = sc.nextInt();
+                System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear' \n 2-'Leer' \n 3-'Salir' ");
 
-            //Switch con tres opciones que corresponden a las tres acciones requeridas.
-            switch (opcion) {
+                int opcion = sc.nextInt();
 
-                //Caso añadir datos.
-                case 1:
-                    System.out.println("Has elegido 'Crear' ");
-                    break;
+                //Switch con tres opciones que corresponden a las tres acciones requeridas.
+                switch (opcion) {
 
-                //Caso leer datos.
-                case 2:
-                    System.out.println("Has elegido 'Leer' ");
-                    basededatos.mostrarDatos();
-                    break;
-                //Caso salir del programa.
-                case 3:
-                    System.out.println("Saliendo del programa (ˉ﹃ˉ) ");
-                    sc.close();
-                    break;
+                    //Caso añadir datos.
+                    case 1:
+                        System.out.println("Has elegido 'Crear' ");
+                        break;
 
-                default:
-                    System.out.println("Has elegido una opción incorrecta");
+                    //Caso leer datos.
+                    case 2:
+                        System.out.println("Has elegido 'Leer' ");
+                        basededatos.mostrarDatos();
+                        break;
+                    //Caso salir del programa.
+                    case 3:
+                        System.out.println("Saliendo del programa (ˉ﹃ˉ) ");
+                        sc.close();
+                        continuar = false;
+                        break;
+
+                    default:
+                        System.out.println("Has elegido una opción incorrecta");
+                }
+
+            }catch (Exception e){
+                System.out.println("Error" + e.getMessage());
             }
-
-        }catch (Exception e){
-            System.out.println("Error" + e.getMessage());
         }
-
-
-
-
     }
 }

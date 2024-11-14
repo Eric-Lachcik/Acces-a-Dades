@@ -52,7 +52,7 @@ public class basededatos {
                 int caducidad = rs.getInt("edad");
                 String email = rs.getString("email");
 
-                System.out.println("Empleado " + id + "\n -Nombre: " + nom + "\n -Edad: " + caducidad + "\n -Email: " + email);
+                System.out.println("Empleado con el Id:" + id + "\n -Nombre: " + nom + "\n -Edad: " + caducidad + "\n -Email: " + email);
             }
 
         } catch (SQLException e) {

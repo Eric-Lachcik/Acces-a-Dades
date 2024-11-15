@@ -132,7 +132,7 @@ public class basededatos {
             sc.nextLine();
 
             String email = "";
-            //Validacion de campo Email
+            //Validacion de campo Email, tiene que contener el @
             while (!email.matches("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
                 System.out.print("Ingrese email del empleado (formato válido): ");
                 email = sc.nextLine();
@@ -150,7 +150,7 @@ public class basededatos {
                 stat.setString(4, email);
 
                 stat.executeUpdate();
-                System.out.println("Datos del empleado insertados correctamente. (▀̿Ĺ̯▀̿ ̿)");
+                System.out.println("Datos del empleado insertados correctamente. ヾ(≧▽≦*)o");
             } catch (SQLException e) {
                 System.out.println("Error al insertar los datos: " + e.getMessage());
             }

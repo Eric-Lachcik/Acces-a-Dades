@@ -22,21 +22,14 @@ public class Persona {
     public String getNom() {
         return nom;
     }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
     public int getEdad() {
         return edad;
     }
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
+
     public String getEmail() {
         return email;
     }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
     @Override
     public String toString() {
         return "PERSONA [nom=" + nom + ", edad=" + edad + ", email=" + email + "]";

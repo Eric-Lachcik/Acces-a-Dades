@@ -1,21 +1,28 @@
 package org.example;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         try{
+            //Iniciamos la base de datos.
+            // Creamos el EntityManagerFactory basado en el persistence.xml.
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("objectdb_example");
+            EntityManager em = emf.createEntityManager();
+
             //Iniciamos un Scanner.
             Scanner sc = new Scanner(System.in);
+
             //Booleano de control del while.
             boolean continuar = true;
 
-            //Iniciamos la base de datos.
-            if (continuar){
                 while(continuar){
                     try{
                         System.out.println();
-                        System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Personas' \n 2-'Eliminar Personas' \n 3-'Modificar Personas' \n 4-'Mostrar Personas' \n 5-'Salir del Programa' ");
+                        System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Personas' \n 3-'Eliminar Personas' \n 4-'Modificar Personas' \n 5-'Mostrar Personas' \n 6-'Salir del Programa' ");
 
                         int opcion = sc.nextInt();
 
@@ -25,30 +32,36 @@ public class Main {
                             //Caso crear datos.
                             case 1:
                                 System.out.println("Has elegido 'Crear Personas' ");
-
+                                Basededatos.crearPersona(em, sc);
                                 break;
-
-                            //Caso eliminar datos.
+                            //Caso buscar datos.
                             case 2:
+                                System.out.println("Has elegido 'Buscar Personas' ");
+                                Basededatos.buscarPersona(em, sc);
+                                break;
+                            //Caso eliminar datos.
+                            case 3:
                                 System.out.println("Has elegido 'Eliminar Personas' ");
-
+                                Basededatos.eliminarPersona(em, sc);
                                 break;
 
                             //Caso modificar datos.
-                            case 3:
+                            case 4:
                                 System.out.println("Has elegido 'Modificar Personas' ");
-
+                                Basededatos.modificarPersona(em, sc);
                                 break;
 
                             //Caso mostrar datos.
-                            case 4:
+                            case 5:
                                 System.out.println("Has elegido 'Mostrar Personas' ");
-
+                                Basededatos.mostrarPersonas(em);
                                 break;
 
                             //Caso salir del programa.
-                            case 5:
+                            case 6:
                                 System.out.println("Saliendo del programa (ˉ﹃ˉ) ");
+                                em.close();
+                                emf.close();
                                 sc.close();
                                 continuar = false;
                                 break;
@@ -65,9 +78,6 @@ public class Main {
                         System.out.println("Error" + e.getMessage());
                     }
                 }
-            }else {
-                System.out.println("No se ha creado bien la base de datos");
-            }
         } catch (Exception e) {
             System.out.println("Ha petado desde el principio" + e.getMessage());
             throw new RuntimeException(e);

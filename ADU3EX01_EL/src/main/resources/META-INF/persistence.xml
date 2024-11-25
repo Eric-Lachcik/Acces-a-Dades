@@ -7,7 +7,7 @@
     <persistence-unit name="objectdb_example" transaction-type="RESOURCE_LOCAL">
         <class>org.example.Persona</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="objectdb://localhost:6136/objectdb_example.odb" />
+            <property name="javax.persistence.jdbc.url" value="objectdb:ADU3EX01_EL.odb" />
             <property name="javax.persistence.jdbc.driver" value="com.objectdb.Driver" />
             <property name="javax.persistence.jdbc.user" value="" />
             <property name="javax.persistence.jdbc.password" value="" />

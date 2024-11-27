@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class basededatos {
     //Url a modificar segun el sitio de creacion de la base datos.
-    private static final String url = "jdbc:sqlite:C:\\DAM2\\Acces-a-Dades\\ADU2EX01_EL\\empleados.db";;
+    private static final String url = "jdbc:sqlite:C:\\DAM2\\Acces-a-Dades\\ADU2EX01_EL\\empleados.db";
 
     //Metodo encargado de llamar al metodo privado que se encarga de llamar al metodo que crea la tabla empleados.
     public static boolean inicializar() {

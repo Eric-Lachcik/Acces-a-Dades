@@ -67,7 +67,7 @@ public class Basededatos {
 
     }
 
-
+    //Metodo encargado de buscar una persona para despues elegir modificar o eliminarlo.
     public static void buscarPersona(EntityManager em, Scanner sc) {
 
     }

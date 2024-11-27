@@ -69,7 +69,49 @@ public class Basededatos {
 
     //Metodo encargado de buscar una persona para despues elegir modificar o eliminarlo.
     public static void buscarPersona(EntityManager em, Scanner sc) {
+        System.out.print("Ingrese el nombre de la persona que desea buscar: ");
+        String nombre = sc.nextLine();
 
+        while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+            System.out.print("Ingrese un nombre válido (solo letras y espacios): ");
+            nombre = sc.nextLine();
+        }
+
+        // Buscar personas con el nombre ingresado
+        TypedQuery<Persona> query = em.createQuery("SELECT p FROM Persona p WHERE p.nom = :nombre", Persona.class);
+        query.setParameter("nombre", nombre);
+        List<Persona> personas = query.getResultList();
+
+        if (personas.isEmpty()) {
+            System.out.println("No se encontró ninguna persona con el nombre: " + nombre);
+        } else {
+            System.out.println("Se encontró la siguiente persona:");
+            Persona persona = personas.get(0);
+            System.out.println(persona);
+
+            // Preguntar al usuario qué acción desea realizar
+            System.out.println("¿Qué desea hacer con esta persona?");
+            System.out.println("1. Modificar");
+            System.out.println("2. Eliminar");
+            System.out.println("3. Cancelar");
+            System.out.print("Elija una opción: ");
+            int opcion = sc.nextInt();
+            sc.nextLine(); // Consumir el salto de línea
+
+            switch (opcion) {
+                case 1:
+                    modificarPersona(em, sc);
+                    break;
+                case 2:
+                    eliminarPersona(em, sc);
+                    break;
+                case 3:
+                    System.out.println("Operación cancelada.");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Operación cancelada.");
+            }
+        }
     }
 
     //Metodo encargado de eliminar un objeto persona de nuestra seleccion.

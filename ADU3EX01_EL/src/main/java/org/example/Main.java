@@ -22,7 +22,7 @@ public class Main {
                 while(continuar){
                     try{
                         System.out.println();
-                        System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Personas' \n 3-'Eliminar Personas' \n 4-'Modificar Personas' \n 5-'Mostrar Personas' \n 6-'Salir del Programa' ");
+                        System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Personas' \n 2-'Buscar Personas' \n 3-'Eliminar Personas' \n 4-'Modificar Personas' \n 5-'Mostrar Personas' \n 6-'Salir del Programa' ");
 
                         int opcion = sc.nextInt();
 

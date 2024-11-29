@@ -14,7 +14,7 @@ public class Basededatos {
         boolean agregarMas = true;
 
         while (agregarMas) {
-
+            sc.nextLine();
             //Validacion de campo nombre.
             String nom = "";
             while (!nom.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
@@ -71,13 +71,13 @@ public class Basededatos {
     public static void buscarPersona(EntityManager em, Scanner sc) {
         System.out.print("Ingrese el nombre de la persona que desea buscar: ");
         String nombre = sc.nextLine();
-
+        //Validación del nombre.
         while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
             System.out.print("Ingrese un nombre válido (solo letras y espacios): ");
             nombre = sc.nextLine();
         }
 
-        // Buscar personas con el nombre ingresado
+        //Buscamos personas con el nombre ingresado.
         TypedQuery<Persona> query = em.createQuery("SELECT p FROM Persona p WHERE p.nom = :nombre", Persona.class);
         query.setParameter("nombre", nombre);
         List<Persona> personas = query.getResultList();
@@ -89,21 +89,23 @@ public class Basededatos {
             Persona persona = personas.get(0);
             System.out.println(persona);
 
-            // Preguntar al usuario qué acción desea realizar
+            //Preguntamos al usuario qué acción desea realizar.
             System.out.println("¿Qué desea hacer con esta persona?");
             System.out.println("1. Modificar");
             System.out.println("2. Eliminar");
             System.out.println("3. Cancelar");
             System.out.print("Elija una opción: ");
             int opcion = sc.nextInt();
-            sc.nextLine(); // Consumir el salto de línea
-
+            sc.nextLine();
+            //Switch para decidir que hacer con la persona introducida.
             switch (opcion) {
                 case 1:
-                    modificarPersona(em, sc);
+                    //Modificarla.
+                    modificarPersona(em, sc, nombre);
                     break;
                 case 2:
-                    eliminarPersona(em, sc);
+                    //Elimnarla.
+                    eliminarPersona(em, sc, nombre);
                     break;
                 case 3:
                     System.out.println("Operación cancelada.");
@@ -115,15 +117,14 @@ public class Basededatos {
     }
 
     //Metodo encargado de eliminar un objeto persona de nuestra seleccion.
-    public static void eliminarPersona(EntityManager em, Scanner sc) {
-
-        String nombre = sc.nextLine();
-
-        while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+    public static void eliminarPersona(EntityManager em, Scanner sc,  String nombre) {
+        //Ejecutar introducir nombre y validacion si String nombre es null.
+        if (nombre == null || nombre.isEmpty()) {
             System.out.print("Ingrese nombre del empleado (solo letras y espacios): ");
             nombre = sc.nextLine();
-            if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
-                System.out.println("El nombre solo puede contener letras y espacios.");
+            while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+                System.out.print("Ingrese un nombre válido (solo letras y espacios): ");
+                nombre = sc.nextLine();
             }
         }
 
@@ -141,18 +142,19 @@ public class Basededatos {
         }
     }
     //Metodo encargado de Modificar una personar despues de hacer una busqueda por nombre en la base de datos.
-    public static void modificarPersona(EntityManager em, Scanner sc) {
-        String nombre = sc.nextLine();
-
-        while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+    public static void modificarPersona(EntityManager em, Scanner sc, String nombre) {
+        //Ejecutar introducir nombre y validacion si String nombre es null.
+        if (nombre == null || nombre.isEmpty()) {
             System.out.print("Ingrese nombre del empleado (solo letras y espacios): ");
             nombre = sc.nextLine();
-            if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
-                System.out.println("El nombre solo puede contener letras y espacios.");
+            while (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+                System.out.print("Ingrese un nombre válido (solo letras y espacios): ");
+                nombre = sc.nextLine();
             }
         }
 
         em.getTransaction().begin();
+        //Configuramos el prompt de la query que tenemos que usar.
         TypedQuery<Persona> query = em.createQuery("SELECT p FROM Persona p WHERE p.nom = :nombre", Persona.class);
         query.setParameter("nombre", nombre);
         List<Persona> personas = query.getResultList();
@@ -213,6 +215,7 @@ public class Basededatos {
 
     //Metodo encargado de mostrar las Personas contenidas dentro de la base de datos.
     public static void mostrarPersonas(EntityManager em) {
+        //Configuramos el prompt de la query que tenemos que usar.
         TypedQuery<Persona> query = em.createQuery("SELECT p FROM Persona p", Persona.class);
         List<Persona> personas = query.getResultList();
 

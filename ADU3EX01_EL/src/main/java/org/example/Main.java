@@ -42,13 +42,13 @@ public class Main {
                             //Caso eliminar datos.
                             case 3:
                                 System.out.println("Has elegido 'Eliminar Personas' ");
-                                Basededatos.eliminarPersona(em, sc);
+                                Basededatos.eliminarPersona(em, sc, null);
                                 break;
 
                             //Caso modificar datos.
                             case 4:
                                 System.out.println("Has elegido 'Modificar Personas' ");
-                                Basededatos.modificarPersona(em, sc);
+                                Basededatos.modificarPersona(em, sc, null);
                                 break;
 
                             //Caso mostrar datos.

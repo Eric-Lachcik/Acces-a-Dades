@@ -228,5 +228,6 @@ public class Basededatos {
             System.out.println("Error al mostrar las personas: " + e.getMessage());
         }
     }
+
 }
 

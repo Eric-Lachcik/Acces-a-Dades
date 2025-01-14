@@ -19,46 +19,55 @@ public class Main {
             while (continuar) {
                 try {
                     System.out.println();
-                    System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Personas' \n 2-'Buscar Personas' \n 3-'Eliminar Personas' \n 4-'Modificar Personas' \n 5-'Mostrar Personas' \n 6-'Salir del Programa' ");
+                    System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Autores' \n 2-'Crear Libros' \n 3-'Mostrar Datos' \n 4-'Modificar Personas' \n 5-'Eliminar Libros' \n 6-'Eliminar Autores' \n 7-'Salir del Programa' ");
 
                     int opcion = sc.nextInt();
                     switch (opcion) {
 
-                        //Caso insertar datos.
+                        //Caso crear autores.
                         case 1:
-                            System.out.println("Has elegido 'Insertar Personas' ");
-                            insertarDatos();
+                            System.out.println("Has elegido 'Crear Autores' ");
+                            insertarDatosAutor(sc);
                             break;
 
-                        //Caso buscar datos.
+                        //Caso crear libros.
                         case 2:
-                            System.out.println("Has elegido 'Buscar Personas' ");
-                            Basededatos.buscarPersona(em, sc);
-                            break;
-
-                        //Caso eliminar datos.
-                        case 3:
-                            System.out.println("Has elegido 'Eliminar Personas' ");
-                            Basededatos.eliminarPersona(em, sc, null);
-                            break;
-
-                        //Caso modificar datos.
-                        case 4:
-                            System.out.println("Has elegido 'Modificar Personas' ");
-                            Basededatos.modificarPersona(em, sc, null);
+                            System.out.println("Has elegido 'Crear Libros' ");
+                            crearLlibre(sc);
                             break;
 
                         //Caso mostrar datos.
+                        case 3:
+                            System.out.println("Has elegido 'Mostrar Datos' ");
+                            leerDatos();
+                            break;
+
+                        //Caso modificar datos libro.
+                        case 4:
+                            System.out.println("Has elegido 'Modificar Libros' ");
+                            modificarDatosLlibre(sc);
+                            break;
+
+                        //Caso modificar datos libro.
                         case 5:
-                            System.out.println("Has elegido 'Mostrar Personas' ");
-                            Basededatos.mostrarPersonas(em);
+                            System.out.println("Has elegido 'Modificar Autores' ");
+                            break;
+
+                        //Caso Eliminar Libros.
+                        case 6:
+                            System.out.println("Has elegido 'Eliminar Libros' ");
+                            eliminarLlibre(sc);
+                            break;
+
+                        //Caso Eliminar Autores.
+                        case 7:
+                            System.out.println("Has elegido 'Eliminar Libros' ");
+                            eliminarAutor(sc);
                             break;
 
                         //Caso salir del programa.
-                        case 6:
+                        case 8:
                             System.out.println("Saliendo del programa (ˉ﹃ˉ) ");
-                            em.close();
-                            emf.close();
                             sc.close();
                             continuar = false;
                             break;
@@ -76,20 +85,8 @@ public class Main {
                     System.out.println("Error segundo catch" + e.getMessage());
                 }
             }
-            // Inserta datos
-            insertarDatos();
 
-            // Lee datos
-            leerDatos();
 
-            // Modifica datos
-            modificarDatosLlibre(1, "Títol Actualitzat");
-
-            // Elimina un llibre
-            eliminarLlibre(1);
-
-            // Elimina un autor
-            eliminarAutor(1);
 
             hibernate.shutdown();
         }catch (Exception e) {

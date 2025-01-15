@@ -300,7 +300,7 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            System.out.print("Introdueix l'ID de l'autor del llibre: ");
+            System.out.print("Introdueix l'ID del llibre: ");
             int llibreId = sc.nextInt();
             sc.nextLine();
 

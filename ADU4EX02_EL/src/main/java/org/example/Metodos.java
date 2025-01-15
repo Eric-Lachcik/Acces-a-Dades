@@ -18,7 +18,7 @@ public class Metodos {
                 Transaction transaction = session.beginTransaction();
 
                 sc.nextLine();
-                // Validación de campo nombre.
+                //Validación de campo nombre.
                 String nom = "";
                 while (!nom.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
                     System.out.print("Ingrese nombre del empleado (solo letras y espacios): ");
@@ -30,7 +30,7 @@ public class Metodos {
 
                 sc.nextLine();
                 String dataNaixement = "";
-                // Validación de campo Fecha.
+                //Validación de campo Fecha.
                 while (!dataNaixement.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
                     System.out.print("Ingrese la fecha (formato YYYY-MM-DD): ");
                     dataNaixement = sc.nextLine();
@@ -43,7 +43,6 @@ public class Metodos {
                 autor.setNom(nom);
                 autor.setDataNaixement(LocalDate.parse(dataNaixement));
 
-                // Persistir autor
                 session.persist(autor);
 
                 try {
@@ -66,7 +65,7 @@ public class Metodos {
 
     public static void crearLlibre(Scanner sc) {
         try (Session session = hibernate.getSessionFactory().openSession()){
-            // Verificar si hay al menos un autor registrado en la base de datos
+            //Verificar si hay al menos un autor registrado en la base de datos.
             Query<Long> countQuery = session.createQuery("SELECT COUNT(a) FROM Autor a", Long.class);
             Long totalAutores = countQuery.uniqueResult();
 
@@ -80,13 +79,13 @@ public class Metodos {
                         Transaction transaction = session.beginTransaction();
 
                         sc.nextLine();
-                        // Validación de campo nombre.
+                        //Validación de campo nombre.
                         String titol = "";
                         System.out.print("Ingrese nombre del Libro: ");
                         titol = sc.nextLine();
 
                         int anyPublicacio = 2026;
-                        // Validación de campo edad.
+                        //Validación de campo edad.
                         while (anyPublicacio > 2025) {
                             System.out.print("Introdueix l'any de publicació: ");
                             if (sc.hasNextInt()) {
@@ -101,10 +100,6 @@ public class Metodos {
                         }
                         sc.nextLine();
 
-
-//                        System.out.print("Introdueix l'any de publicació: ");
-//                        int anyPublicacio = sc.nextInt();
-//                        sc.nextLine();
                         int autorId;
                         System.out.print("Introdueix l'ID de l'autor del llibre: ");
                         autorId = sc.nextInt();
@@ -121,7 +116,7 @@ public class Metodos {
                         llibre.setAnyPublicacio(anyPublicacio);
                         llibre.setAutor(autor);
 
-                        // Guardar libro
+                        //Guardar libro.
                         session.persist(llibre);
 
                         try {
@@ -151,7 +146,7 @@ public class Metodos {
 
     public static void leerDatos() {
         try (Session session = hibernate.getSessionFactory().openSession()) {
-            // Consulta para obtener todos los autores
+            //Consulta para obtener todos los autores.
             List<Autor> autores = session.createQuery("FROM Autor", Autor.class).list();
 
             if (autores.isEmpty()) {
@@ -170,7 +165,7 @@ public class Metodos {
                 }
             }
 
-            // Consulta para obtener todos los libros
+            //Consulta para obtener todos los libros.
             List<Llibre> llibres = session.createQuery("FROM Llibre", Llibre.class).list();
 
             if (llibres.isEmpty()) {
@@ -202,18 +197,18 @@ public class Metodos {
             int llibreId = sc.nextInt();
             sc.nextLine();
 
+
+            //Buscar el libro en la base de datos.
             Llibre llibre = session.get(Llibre.class, llibreId);
             if (llibre != null) {
                 System.out.println("Libro encontrado: " + llibre.getTitol() + " (" + llibre.getAnyPublicacio() + ")");
 
-                // Solicitar el nuevo título (opcional)
                 System.out.print("Ingrese el nuevo título del llibre (deje vacío para no modificar): ");
                 String nuevoTitulo = sc.nextLine();
                 if (!nuevoTitulo.trim().isEmpty()) {
                     llibre.setTitol(nuevoTitulo);
                 }
 
-                // Solicitar el nuevo año de publicación (opcional)
                 System.out.print("Ingrese el nuevo año de publicación (deje vacío para no modificar): ");
                 String nuevoAnyStr = sc.nextLine();
                 if (!nuevoAnyStr.trim().isEmpty()) {
@@ -225,7 +220,6 @@ public class Metodos {
                     }
                 }
 
-                // Confirmar cambios al usuario
                 System.out.println("¿Desea guardar los cambios? (s/n): ");
                 String confirmacion = sc.nextLine();
                 if (confirmacion.equalsIgnoreCase("s")) {
@@ -246,25 +240,23 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            // Solicitar el ID del autor
+
             System.out.print("Ingrese el ID del autor que desea modificar: ");
             int autorId = sc.nextInt();
-            sc.nextLine(); // Consumir la nueva línea
+            sc.nextLine();
 
-            // Buscar el autor en la base de datos
+            //Buscar el autor en la base de datos.
             Autor autor = session.get(Autor.class, autorId);
             if (autor != null) {
                 System.out.println("Autor encontrado: " + autor.getNom() +
                         (autor.getDataNaixement() != null ? " (Fecha de nacimiento: " + autor.getDataNaixement() + ")" : ""));
 
-                // Solicitar el nuevo nombre (opcional)
                 System.out.print("Ingrese el nuevo nombre del autor (deje vacío para no modificar): ");
                 String nuevoNombre = sc.nextLine();
                 if (!nuevoNombre.trim().isEmpty()) {
                     autor.setNom(nuevoNombre);
                 }
 
-                // Solicitar la nueva fecha de nacimiento (opcional)
                 System.out.print("Ingrese la nueva fecha de nacimiento (formato AAAA-MM-DD, deje vacío para no modificar): ");
                 String nuevaFechaStr = sc.nextLine();
                 if (!nuevaFechaStr.trim().isEmpty()) {
@@ -276,7 +268,6 @@ public class Metodos {
                     }
                 }
 
-                // Confirmar cambios al usuario
                 System.out.println("¿Desea guardar los cambios? (s/n): ");
                 String confirmacion = sc.nextLine();
                 if (confirmacion.equalsIgnoreCase("s")) {
@@ -304,14 +295,14 @@ public class Metodos {
             int llibreId = sc.nextInt();
             sc.nextLine();
 
+            //Buscar el libro en la base de datos.
             Llibre llibre = session.get(Llibre.class, llibreId);
             if (llibre != null) {
-                // Eliminamos el libro
+
                 session.remove(llibre);
                 transaction.commit();
                 System.out.println("Llibre eliminado correctamente.");
 
-                // Verificamos si el libro ha sido eliminado
                 Llibre libroVerificado = session.get(Llibre.class, llibreId);
                 if (libroVerificado == null) {
                     System.out.println("La eliminación se verificó correctamente.");
@@ -334,12 +325,12 @@ public class Metodos {
 
             Autor autor = session.get(Autor.class, autorId);
             if (autor != null) {
-                // Eliminamos el autor
+
                 session.remove(autor);
                 transaction.commit();
                 System.out.println("Autor eliminado correctamente.");
 
-                // Verificamos si el autor ha sido eliminado
+                //Buscar el autor en la base de datos.
                 Autor autorVerificado = session.get(Autor.class, autorId);
                 if (autorVerificado == null) {
                     System.out.println("La eliminación del autor se verificó correctamente.");

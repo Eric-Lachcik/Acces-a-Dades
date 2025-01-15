@@ -19,7 +19,7 @@ public class Main {
             while (continuar) {
                 try {
                     System.out.println();
-                    System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Autores' \n 2-'Crear Libros' \n 3-'Mostrar Datos' \n 4-'Modificar Personas' \n 5-'Eliminar Libros' \n 6-'Eliminar Autores' \n 7-'Salir del Programa' ");
+                    System.out.println("Elige una opcion, elige  escribiendo el numero que deseas de los disponibles: \n 1-'Crear Autores' \n 2-'Crear Libros' \n 3-'Mostrar Datos' \n 4-'Modificar Libros' \n 5-'Modificar Autores' \n 6-'Eliminar Libros'  \n 7-'Eliminar Autores' \n 8-'Salir del Programa' ");
 
                     int opcion = sc.nextInt();
                     switch (opcion) {
@@ -51,6 +51,7 @@ public class Main {
                         //Caso modificar datos libro.
                         case 5:
                             System.out.println("Has elegido 'Modificar Autores' ");
+                            modificarDatosAutor(sc);
                             break;
 
                         //Caso Eliminar Libros.
@@ -61,7 +62,7 @@ public class Main {
 
                         //Caso Eliminar Autores.
                         case 7:
-                            System.out.println("Has elegido 'Eliminar Libros' ");
+                            System.out.println("Has elegido 'Eliminar Autores' ");
                             eliminarAutor(sc);
                             break;
 
@@ -85,9 +86,6 @@ public class Main {
                     System.out.println("Error segundo catch" + e.getMessage());
                 }
             }
-
-
-
             hibernate.shutdown();
         }catch (Exception e) {
             System.out.println("Error primer catch" + e.getMessage());

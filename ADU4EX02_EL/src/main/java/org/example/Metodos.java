@@ -79,15 +79,35 @@ public class Metodos {
                     try  {
                         Transaction transaction = session.beginTransaction();
 
-                        System.out.print("Introdueix el títol del llibre: ");
-                        String titol = sc.nextLine();
+                        sc.nextLine();
+                        // Validación de campo nombre.
+                        String titol = "";
+                        System.out.print("Ingrese nombre del Libro: ");
+                        titol = sc.nextLine();
 
-                        System.out.print("Introdueix l'any de publicació: ");
-                        int anyPublicacio = sc.nextInt();
+                        int anyPublicacio = 2026;
+                        // Validación de campo edad.
+                        while (anyPublicacio > 2025) {
+                            System.out.print("Introdueix l'any de publicació: ");
+                            if (sc.hasNextInt()) {
+                                anyPublicacio = sc.nextInt();
+                                if (anyPublicacio > 2025) {
+                                    System.out.println("Año realista porfavor");
+                                }
+                            } else {
+                                System.out.println("Por favor, ingrese un número válido.");
+                                sc.next();
+                            }
+                        }
                         sc.nextLine();
 
+
+//                        System.out.print("Introdueix l'any de publicació: ");
+//                        int anyPublicacio = sc.nextInt();
+//                        sc.nextLine();
+                        int autorId;
                         System.out.print("Introdueix l'ID de l'autor del llibre: ");
-                        int autorId = sc.nextInt();
+                        autorId = sc.nextInt();
                         sc.nextLine();
 
                         Autor autor = session.get(Autor.class, autorId);
@@ -219,6 +239,60 @@ public class Metodos {
             } else {
                 System.out.println("Llibre no encontrado.");
             }
+        }
+    }
+
+    public static void modificarDatosAutor(Scanner sc) {
+        try (Session session = hibernate.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // Solicitar el ID del autor
+            System.out.print("Ingrese el ID del autor que desea modificar: ");
+            int autorId = sc.nextInt();
+            sc.nextLine(); // Consumir la nueva línea
+
+            // Buscar el autor en la base de datos
+            Autor autor = session.get(Autor.class, autorId);
+            if (autor != null) {
+                System.out.println("Autor encontrado: " + autor.getNom() +
+                        (autor.getDataNaixement() != null ? " (Fecha de nacimiento: " + autor.getDataNaixement() + ")" : ""));
+
+                // Solicitar el nuevo nombre (opcional)
+                System.out.print("Ingrese el nuevo nombre del autor (deje vacío para no modificar): ");
+                String nuevoNombre = sc.nextLine();
+                if (!nuevoNombre.trim().isEmpty()) {
+                    autor.setNom(nuevoNombre);
+                }
+
+                // Solicitar la nueva fecha de nacimiento (opcional)
+                System.out.print("Ingrese la nueva fecha de nacimiento (formato AAAA-MM-DD, deje vacío para no modificar): ");
+                String nuevaFechaStr = sc.nextLine();
+                if (!nuevaFechaStr.trim().isEmpty()) {
+                    try {
+                        LocalDate nuevaFecha = LocalDate.parse(nuevaFechaStr);
+                        autor.setDataNaixement(nuevaFecha);
+                    } catch (Exception e) {
+                        System.out.println("Fecha ingresada no válida. No se modificará la fecha de nacimiento.");
+                    }
+                }
+
+                // Confirmar cambios al usuario
+                System.out.println("¿Desea guardar los cambios? (s/n): ");
+                String confirmacion = sc.nextLine();
+                if (confirmacion.equalsIgnoreCase("s")) {
+                    session.merge(autor);
+                    transaction.commit();
+                    System.out.println("Autor modificado correctamente.");
+                } else {
+                    System.out.println("Cambios cancelados.");
+                    transaction.rollback();
+                }
+            } else {
+                System.out.println("Autor no encontrado.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error al modificar el autor: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

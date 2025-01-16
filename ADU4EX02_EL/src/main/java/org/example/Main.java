@@ -9,9 +9,18 @@ import static org.example.Metodos.*;
 
 public class Main {
     public static void main(String[] args) {
-            try {
-//                //Iniciamos BD.
-//                Basededatos.crearBaseDeDatos("EX", "root", "root");
+        // Cambiar el nombre de la bd que quieres crear
+        String nombreBaseDatos = "bd1";
+        String usuario = "root";
+        String contra = "root";
+        try {
+                //Iniciamos BD. ¡¡Cambiar el nombre de la Base de datos!!
+                Basededatos.crearBaseDeDatos(nombreBaseDatos, usuario, contra);
+                //Cambiar esto tambien.
+                System.setProperty("hibernate.database.name", nombreBaseDatos);
+
+
+
                 //Iniciamos un Scanner.
                 Scanner sc = new Scanner(System.in);
 

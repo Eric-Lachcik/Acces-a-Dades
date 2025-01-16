@@ -8,8 +8,8 @@ import java.sql.Statement;
 public class Basededatos {
 
     public static void crearBaseDeDatos(String nombreBaseDatos, String usuario, String contraseña) {
-        //Conexió a la base de dates
-        String url = "jdbc:mysql://localhost:3307/localServer";
+        //Cambiar la conexion del mysql con la ip correspondiente y el puerto(modificar hibernate).
+        String url = "jdbc:mysql://localhost:3307/";
         String sql = "CREATE DATABASE IF NOT EXISTS " + nombreBaseDatos;
 
         try (Connection connection = DriverManager.getConnection(url, usuario, contraseña);

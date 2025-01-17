@@ -56,7 +56,7 @@ public class Metodos {
                 System.out.print("¿Desea agregar otro autor? (s/n): ");
                 String respuesta = scAgr.nextLine();
                 agregarMas = respuesta.equalsIgnoreCase("s");
-
+                System.out.print("Presione Enter una vez mas ");
 
             } catch (Exception e) {
                 System.err.println("Error al Insertar Autor: " + e.getMessage());

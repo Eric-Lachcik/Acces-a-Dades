@@ -15,7 +15,7 @@ public class Basededatos {
 
              Statement statement = connection.createStatement()) {
 
-            // Executar comanda SQL para crear la base de dates
+            // Ejecutar comanda SQL para crear la base de datos.
             statement.executeUpdate(sql);
             System.out.println("Base de datos '" + nombreBaseDatos + "' verificada o creada con éxito.");
 

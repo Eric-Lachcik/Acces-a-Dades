@@ -11,10 +11,13 @@ public class Main {
     public static void main(String[] args) {
         // URL del servidor de MySQL (me refiero a esto '//localhost:3307' )
         String ip = "//localhost:3307";
+
         // No tocar
         String urlTotal = "jdbc:mysql:" + ip;
+
         // Cambiar el nombre de la bd que quieres crear
         String nombreBaseDatos = "bd";
+
         String usuario = "root";
         String contra = "root";
         try {

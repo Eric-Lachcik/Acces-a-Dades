@@ -18,9 +18,9 @@ public class Main {
         String usuario = "root";
         String contra = "root";
         try {
-                //Iniciamos BD. ¡¡Cambiar el nombre de la Base de datos!!
+                //Iniciamos BD.
                 Basededatos.crearBaseDeDatos(urlTotal, nombreBaseDatos, usuario, contra);
-                //Cambiar esto tambien.
+                // Para no tener que modificar el archivo hibernate.
                 System.setProperty("hibernate.database.name", nombreBaseDatos);
                 System.setProperty("hibernate.database.url", ip);
 

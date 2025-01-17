@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Basededatos {
 
     public static void crearBaseDeDatos(String url, String nombreBaseDatos, String usuario, String contraseña) {
-
+        // Creacion de la bd con el nombre proporcionado si no existe.
         String sql = "CREATE DATABASE IF NOT EXISTS " + nombreBaseDatos;
 
         try (Connection connection = DriverManager.getConnection(url, usuario, contraseña);

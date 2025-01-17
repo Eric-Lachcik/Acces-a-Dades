@@ -21,14 +21,13 @@ public class Metodos {
                 //Validación de campo nombre.
                 String nom = "";
                 while (!nom.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
-                    System.out.print("Ingrese nombre del empleado (solo letras y espacios): ");
+                    System.out.print("Ingrese nombre del Autor (solo letras y espacios): ");
                     nom = sc.nextLine();
                     if (!nom.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
                         System.out.println("El nombre solo puede contener letras y espacios.");
                     }
                 }
 
-                sc.nextLine();
                 String dataNaixement = "";
                 //Validación de campo Fecha.
                 while (!dataNaixement.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
@@ -98,7 +97,7 @@ public class Metodos {
                                 sc.next();
                             }
                         }
-                        sc.nextLine();
+
 
                         int autorId;
                         System.out.print("Introdueix l'ID de l'autor del llibre: ");
@@ -128,9 +127,10 @@ public class Metodos {
                             e.printStackTrace();
                         }
 
-                        System.out.print("¿Desea agregar otro libro? (s/n): ");
+                        System.out.print("¿Desea agregar otro libro? (s/n) ");
                         String respuesta = scAgr.nextLine();
                         agregarMas = respuesta.equalsIgnoreCase("s");
+                        System.out.print("Presione Enter una vez mas ");
 
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -192,6 +192,18 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
+            //Consulta para obtener todos los libros.
+            List<Llibre> llibres = session.createQuery("FROM Llibre", Llibre.class).list();
+
+            if (llibres.isEmpty()) {
+                System.out.println("\nNo hay libros registrados.");
+            } else {
+                System.out.println("\nLista de libros:");
+                for (Llibre llibre : llibres) {
+                    System.out.println("ID: " + llibre.getId() + ", Llibre: " + llibre.getTitol() + ", Any: " + llibre.getAnyPublicacio());
+                }
+            }
+
 
             System.out.print("Ingrese el ID del llibre que desea modificar: ");
             int llibreId = sc.nextInt();
@@ -240,6 +252,17 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
+            //Consulta para obtener todos los autores.
+            List<Autor> autores = session.createQuery("FROM Autor", Autor.class).list();
+
+            if (autores.isEmpty()) {
+                System.out.println("No hay autores registrados.");
+            } else {
+                System.out.println("Lista de autores y sus libros:");
+                for (Autor autor : autores) {
+                    System.out.println("Autor: " + autor.getNom() + " (ID: " + autor.getId() + ")");
+                }
+            }
 
             System.out.print("Ingrese el ID del autor que desea modificar: ");
             int autorId = sc.nextInt();
@@ -291,6 +314,18 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
+            //Consulta para obtener todos los libros.
+            List<Llibre> llibres = session.createQuery("FROM Llibre", Llibre.class).list();
+
+            if (llibres.isEmpty()) {
+                System.out.println("\nNo hay libros registrados.");
+            } else {
+                System.out.println("\nLista de libros:");
+                for (Llibre llibre : llibres) {
+                    System.out.println("ID: " + llibre.getId() + ", Llibre: " + llibre.getTitol() + ", Any: " + llibre.getAnyPublicacio());
+                }
+            }
+
             System.out.print("Introdueix l'ID del llibre: ");
             int llibreId = sc.nextInt();
             sc.nextLine();
@@ -319,7 +354,20 @@ public class Metodos {
         try (Session session = hibernate.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            System.out.print("Introdueix l'ID de l'autor del llibre: ");
+            //Consulta para obtener todos los autores.
+            List<Autor> autores = session.createQuery("FROM Autor", Autor.class).list();
+
+            if (autores.isEmpty()) {
+                System.out.println("No hay autores registrados.");
+            } else {
+                System.out.println("Lista de autores y sus libros:");
+                for (Autor autor : autores) {
+                    System.out.println("Autor: " + autor.getNom() + " (ID: " + autor.getId() + ")");
+                }
+            }
+
+
+            System.out.print("Introdueix l'ID de l'autor ");
             int autorId = sc.nextInt();
             sc.nextLine();
 

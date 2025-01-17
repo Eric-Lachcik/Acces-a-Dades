@@ -9,15 +9,20 @@ import static org.example.Metodos.*;
 
 public class Main {
     public static void main(String[] args) {
+        // URL del servidor de MySQL (me refiero a esto '//localhost:3307' )
+        String ip = "//localhost:3307";
+        // No tocar
+        String urlTotal = "jdbc:mysql:" + ip;
         // Cambiar el nombre de la bd que quieres crear
-        String nombreBaseDatos = "bd1";
+        String nombreBaseDatos = "bd";
         String usuario = "root";
         String contra = "root";
         try {
                 //Iniciamos BD. ¡¡Cambiar el nombre de la Base de datos!!
-                Basededatos.crearBaseDeDatos(nombreBaseDatos, usuario, contra);
+                Basededatos.crearBaseDeDatos(urlTotal, nombreBaseDatos, usuario, contra);
                 //Cambiar esto tambien.
                 System.setProperty("hibernate.database.name", nombreBaseDatos);
+                System.setProperty("hibernate.database.url", ip);
 
 
 

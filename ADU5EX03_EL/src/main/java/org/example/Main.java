@@ -14,7 +14,7 @@ public class Main {
     private static final String Collection = "elements";
 
     public static void main(String[] args) {
-        // Iniciamos clase convertidor de Json a Xml
+        // Iniciamos la clase Json a Xml
         JSONaXML jsonConverter = new JSONaXML();
         try {
             // Declaramos el MongoClient con la variable URL
@@ -24,7 +24,9 @@ public class Main {
             // Declaramos el MongoCollection con la variable Collection
             MongoCollection<Document> collection = database.getCollection(Collection);
 
+            // Iteramos sobre la colección
             try (MongoCursor<Document> cursor = collection.find().cursor()) {
+                // Mientras que haya objetos, convertimos cada uno a Xml y lo imprimimos por pantalla
                 while (cursor.hasNext()) {
                     Document document = cursor.next();
                     String  jsonString = document.toJson();
@@ -42,6 +44,7 @@ public class Main {
                 System.err.println("Error: " + e.getMessage());
                 e.printStackTrace();
             }
+            // Cerramos el cliente
             mongoClient.close();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());

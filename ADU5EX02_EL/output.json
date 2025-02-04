@@ -1,4 +1,26 @@
-{"arrel": {"element": {
-    "valor": 123,
-    "nom": "Exemple"
-}}}
+{"library": {"book": [
+    {
+        "year": 1943,
+        "author": "Antoine de Saint-Exupéry",
+        "genre": "Ficción",
+        "title": "El Principito"
+    },
+    {
+        "year": 1967,
+        "author": "Gabriel García Márquez",
+        "genre": "Realismo Mágico",
+        "title": "Cien Años de Soledad"
+    },
+    {
+        "year": 1949,
+        "author": "George Orwell",
+        "genre": "Distopía",
+        "title": 1984
+    },
+    {
+        "year": 2,
+        "author": "Pedro",
+        "genre": "Distopía",
+        "title": 2025
+    }
+]}}

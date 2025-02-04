@@ -1,1 +1,1 @@
-<arrel><element><valor>123</valor><nom>Exemple</nom></element></arrel>
+<library><book><year>1943</year><author>Antoine de Saint-Exupéry</author><genre>Ficción</genre><title>El Principito</title></book><book><year>1967</year><author>Gabriel García Márquez</author><genre>Realismo Mágico</genre><title>Cien Años de Soledad</title></book><book><year>1949</year><author>George Orwell</author><genre>Distopía</genre><title>1984</title></book><book><year>2</year><author>Pedro</author><genre>Distopía</genre><title>2025</title></book></library>

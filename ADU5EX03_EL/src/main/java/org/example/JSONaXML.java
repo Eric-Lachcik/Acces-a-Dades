@@ -8,7 +8,6 @@ public class JSONaXML {
         if (jsonObject == null || jsonObject.isEmpty()) {
             throw new IllegalArgumentException("El objeto JSON está vacío o es nulo.");
         }
-
         try {
             return XML.toString(jsonObject, 2);
         } catch (Exception e) {

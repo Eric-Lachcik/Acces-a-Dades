@@ -1,5 +1,7 @@
 package com.example.ADU7EX01_EL_Franky.Clases;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -18,6 +20,7 @@ public class Hotel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cadena_id")
+    @JsonIgnore
     private Cadena cadena;
 
     @OneToMany(mappedBy = "hotel")
@@ -64,6 +67,12 @@ public class Hotel {
 
     public void setTipoHabitacions(Set<com.example.ADU7EX01_EL_Franky.Clases.TipoHabitacion> tipoHabitacions) {
         this.tipoHabitacions = tipoHabitacions;
+    }
+
+    // Metodo para obtener solo el nombre de la cadena
+    @JsonProperty("cadena")
+    public String getCadenaNombre() {
+        return (cadena != null) ? cadena.getNombre() : null;
     }
 
 }

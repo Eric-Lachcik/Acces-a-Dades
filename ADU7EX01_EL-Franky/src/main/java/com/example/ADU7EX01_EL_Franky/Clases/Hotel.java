@@ -20,7 +20,7 @@ public class Hotel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cadena_id")
-    @JsonIgnore
+//    @JsonIgnore
     private Cadena cadena;
 
     @OneToMany(mappedBy = "hotel")

@@ -1,5 +1,6 @@
 package com.example.ADU7EX01_EL_Franky.Clases;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -88,5 +89,10 @@ public class Reserva {
     public void setTipoHabitacion(com.example.ADU7EX01_EL_Franky.Clases.TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-
+    
+    // Metodo para obtener solo el nombre de la cadena
+    @JsonProperty("hotel")
+    public String getHotelNombre() {
+        return (hotel != null) ? hotel.getNombre() : null;
+    }
 }

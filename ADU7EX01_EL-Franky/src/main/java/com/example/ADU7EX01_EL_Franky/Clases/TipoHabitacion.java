@@ -1,5 +1,6 @@
 package com.example.ADU7EX01_EL_Franky.Clases;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -19,6 +20,7 @@ public class TipoHabitacion {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
+    @JsonIgnore
     private Hotel hotel;
 
     @OneToMany(mappedBy = "tipoHabitacion")
@@ -57,8 +59,8 @@ public class TipoHabitacion {
     }
 
     // Metodo para obtener solo el nombre de la cadena
-    @JsonProperty("hotel")
-    public String getHotelNombre() {
-        return (hotel != null) ? hotel.getNombre() : null;
-    }
+//    @JsonProperty("hotel")
+//    public Integer getHotelNombre() {
+//        return (hotel != null) ? hotel.getId() : null;
+//    }
 }

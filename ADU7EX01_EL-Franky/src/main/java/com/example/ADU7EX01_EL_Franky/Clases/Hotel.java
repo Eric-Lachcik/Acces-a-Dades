@@ -20,7 +20,6 @@ public class Hotel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cadena_id")
-//    @JsonIgnore
     private Cadena cadena;
 
     @OneToMany(mappedBy = "hotel")
@@ -74,5 +73,4 @@ public class Hotel {
     public String getCadenaNombre() {
         return (cadena != null) ? cadena.getNombre() : null;
     }
-
 }

@@ -95,4 +95,16 @@ public class Reserva {
     public String getHotelNombre() {
         return (hotel != null) ? hotel.getNombre() : null;
     }
+
+    // Metodo para obtener solo el nombre de la cadena
+    @JsonProperty("persona")
+    public String getPersonaNombre() {
+        return (persona != null) ? persona.getNombre() : null;
+    }
+
+    // Metodo para obtener solo el nombre de la cadena
+    @JsonProperty("tipoHabitacion")
+    public String getHabitacionNombre() {
+        return (tipoHabitacion != null) ? tipoHabitacion.getNombre() : null;
+    }
 }

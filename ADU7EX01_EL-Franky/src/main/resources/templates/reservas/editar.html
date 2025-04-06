@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Reserva</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+<div class="card">
+    <div class="card-header">
+        <h1>Editar Reserva #<span th:text="${reserva.id}"></span></h1>
+    </div>
+    <div class="card-body">
+        <form th:action="@{/vistas/reservas/editar/{id}(id=${reserva.id})}"
+              th:object="${reserva}"
+              method="post">
+
+            <input type="hidden" name="_method" value="put">
+
+            <div class="mb-3">
+                <label class="form-label">Fecha Check-In</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        th:field="*{checkIn}"
+                        th:value="${#temporals.format(reserva.checkIn, 'dd/MM/yyyy')}"
+                placeholder="dd/mm/aaaa">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha Check-Out</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        th:field="*{checkOut}"
+                        th:value="${#temporals.format(reserva.checkOut, 'dd/MM/yyyy')}"
+                placeholder="dd/mm/aaaa">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Número de Habitaciones</label>
+                <input type="number" class="form-control" th:field="*{numHabitaciones}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Hotel</label>
+                <select class="form-select" th:field="*{hotel}">
+                    <option th:each="hotel : ${hoteles}"
+                            th:value="${hotel.id}"
+                            th:text="${hotel.nombre}"
+                            th:selected="${reserva.hotel.id == hotel.id}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Persona</label>
+                <select class="form-select" th:field="*{persona}">
+                    <option th:each="persona : ${personas}"
+                            th:value="${persona.id}"
+                            th:text="${persona.nombre}"
+                            th:selected="${reserva.persona.id == persona.id}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tipo de Habitación</label>
+                <select class="form-select" th:field="*{tipoHabitacion}">
+                    <option th:each="tipo : ${tiposHabitacion}"
+                            th:value="${tipo.id}"
+                            th:text="${tipo.nombre}"
+                            th:selected="${reserva.tipoHabitacion.id == tipo.id}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a href="/vistas/reservas/listar" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

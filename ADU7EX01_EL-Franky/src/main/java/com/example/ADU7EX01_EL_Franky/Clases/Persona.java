@@ -1,5 +1,7 @@
 package com.example.ADU7EX01_EL_Franky.Clases;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
@@ -7,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "persona")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,7 @@ public class Persona {
     @Column(name = "telefono", length = 50)
     private String telefono;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "persona")
     private Set<com.example.ADU7EX01_EL_Franky.Clases.Reserva> reservas = new LinkedHashSet<>();
 

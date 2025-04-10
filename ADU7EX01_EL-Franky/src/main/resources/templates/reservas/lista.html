@@ -11,8 +11,22 @@
         <h1 th:text="${titulo}"></h1>
     </div>
     <div class="card-body">
-        <button class="btn btn-primary mb-3" onclick="cargarReservas()">Mostrar Reservas</button>
-
+        <div class="d-flex flex-start align-items-end mb-3">
+            <div class="px-3">
+                <button class="btn btn-primary" onclick="cargarReservas()">Mostrar Reservas</button>
+            </div>
+            <div class="me-2">
+                <label class="form-label">Fecha Check-In</label>
+                <input
+                        id="inputFecha"
+                        type="text"
+                        class="form-control"
+                        placeholder="YYYY-MM-DD">
+            </div>
+            <div class="">
+                <button class="btn btn-success" onclick="buscarReservasPorFecha()">Buscar por Fecha</button>
+            </div>
+        </div>
         <div id="reservasContainer" style="display: none;">
             <table class="table table-striped">
                 <thead>
@@ -32,6 +46,47 @@
 </div>
 
 <script>
+    function buscarReservasPorFecha() {
+        const fecha = document.getElementById('inputFecha').value;
+        if (!fecha) {
+            alert('Por favor ingresa una fecha');
+            return;
+        }
+        console.log("Fecha", fecha)
+        fetch(`/reservas/checkin/${encodeURIComponent(fecha)}`)
+            .then(response => response.json())
+            .then(data => {
+                const tabla = document.getElementById('tablaReservas');
+                tabla.innerHTML = '';
+
+                data.forEach(reserva => {
+                    let fila = `<tr id="reserva-${reserva.id}">
+                        <td>${reserva.id}</td>
+                        <td>${reserva.checkIn}</td>
+                        <td>${reserva.checkOut}</td>
+                        <td>${reserva.numHabitaciones}</td>
+                        <td>${reserva.hotel.nombre}</td>
+                       <td class="text-end">
+                            <div class="btn-group">
+                                <button
+                                    class="btn btn-warning btn-sm me-2"
+                                    onclick="location.href='/vistas/reservas/editar/${reserva.id}'">
+                                    Editar
+                                </button>
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    onclick="eliminarReserva(${reserva.id})">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                    tabla.innerHTML += fila;
+                });
+
+                document.getElementById('reservasContainer').style.display = 'block';
+            });
+    }
     function cargarReservas() {
         fetch('/reservas')
             .then(response => response.json())

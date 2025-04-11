@@ -1,0 +1,14 @@
+{
+  "checkIn": "2025-05-13",
+  "checkOut": "2025-05-25",
+  "hotel": {
+    "id": 1
+  },
+  "persona": {
+    "id": 1
+  },
+  "numHabitaciones": 5,
+  "tipoHabitacion": {
+    "id": 1
+  }
+}

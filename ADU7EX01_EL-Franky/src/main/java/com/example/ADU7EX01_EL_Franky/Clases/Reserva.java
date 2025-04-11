@@ -102,22 +102,4 @@ public class Reserva {
     public void setTipoHabitacion(com.example.ADU7EX01_EL_Franky.Clases.TipoHabitacion tipoHabitacion) {
         this.tipoHabitacion = tipoHabitacion;
     }
-    
-    // Metodo para obtener solo el nombre de la cadena
-    // @JsonProperty("hotel")
-    // public String getHotelNombre() {
-    //     return (hotel != null) ? hotel.getNombre() : null;
-    // }
-
-    // // Metodo para obtener solo el nombre de la cadena
-    // @JsonProperty("persona")
-    // public String getPersonaNombre() {
-    //     return (persona != null) ? persona.getNombre() : null;
-    // }
-
-    // // Metodo para obtener solo el nombre de la cadena
-    // @JsonProperty("tipoHabitacion")
-    // public String getHabitacionNombre() {
-    //     return (tipoHabitacion != null) ? tipoHabitacion.getNombre() : null;
-    // }
 }

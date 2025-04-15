@@ -1,14 +1,11 @@
 package com.example.ADU7EX01_EL_Franky.Ingestors.Batch;
 
+import com.example.ADU7EX01_EL_Franky.Services.PostService;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.nio.file.*;
 import java.util.stream.Stream;
 
@@ -21,13 +18,14 @@ import org.w3c.dom.Element;
 @Component
 public class ReservaBatchImporter {
 
+    // Rutas a los directorios de trabajo
     private static final String PENDENT_DIR = "src/main/resources/Reserves/Pendents/";
     private static final String CORRECTE_DIR = "src/main/resources/Reserves/Correctes/";
     private static final String ERROR_DIR = "src/main/resources/Reserves/errors/";
     private static final String ENDPOINT_URL = "http://localhost:8080/reservas";
 
-    // Recogida de datos cada 60 segundos
-    @Scheduled(fixedRate = 60000)
+    // Recogida de datos cada 120 segundos
+    @Scheduled(fixedRate = 12000)
     public void ingestarFitxers() {
         try (Stream<Path> files = Files.list(Paths.get(PENDENT_DIR))) {
             files.filter(path -> path.toString().endsWith(".json") || path.toString().endsWith(".xml"))
@@ -37,9 +35,13 @@ public class ReservaBatchImporter {
         }
     }
 
+    // Procesamos un archivo individual (JSON o XML)y lo convertims a JSON si es necesario
     private static void processFile(Path filePath) {
         try {
+
             JSONObject json;
+
+            // Lee el archivo según su tipo y lo convierte a JSONObject
             if (filePath.toString().endsWith(".json")) {
                 String content = Files.readString(filePath);
                 json = new JSONObject(content);
@@ -47,8 +49,10 @@ public class ReservaBatchImporter {
                 json = parseXmlToJson(filePath);
             }
 
-            boolean success = sendToService(json);
+            // Envía el JSON al endpoint del Post
+            boolean success = PostService.sendToService(json, ENDPOINT_URL);
 
+            // Mueve el archivo a la carpeta de éxito o error según el resultado
             Path targetPath = Paths.get(success ? CORRECTE_DIR : ERROR_DIR, filePath.getFileName().toString());
             Files.move(filePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 
@@ -64,6 +68,7 @@ public class ReservaBatchImporter {
         }
     }
 
+    // Convertimos un archivo XML con datos de reserva a un objeto JSONObject
     private static JSONObject parseXmlToJson(Path filePath) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -73,39 +78,26 @@ public class ReservaBatchImporter {
         Element reserva = doc.getDocumentElement();
         JSONObject json = new JSONObject();
 
+        // Extrae datos básicos de la reserva
         json.put("checkIn", reserva.getElementsByTagName("checkIn").item(0).getTextContent());
         json.put("checkOut", reserva.getElementsByTagName("checkOut").item(0).getTextContent());
         json.put("numHabitaciones", Integer.parseInt(reserva.getElementsByTagName("numHabitaciones").item(0).getTextContent()));
 
+        // Extrae ID del hotel
         JSONObject hotel = new JSONObject();
         hotel.put("id", Integer.parseInt(((Element) reserva.getElementsByTagName("hotel").item(0)).getElementsByTagName("id").item(0).getTextContent()));
         json.put("hotel", hotel);
 
+        // Extrae ID de la persona
         JSONObject persona = new JSONObject();
         persona.put("id", Integer.parseInt(((Element) reserva.getElementsByTagName("persona").item(0)).getElementsByTagName("id").item(0).getTextContent()));
         json.put("persona", persona);
 
+        // Extrae ID del tipo de habitación
         JSONObject tipoHabitacion = new JSONObject();
         tipoHabitacion.put("id", Integer.parseInt(((Element) reserva.getElementsByTagName("tipoHabitacion").item(0)).getElementsByTagName("id").item(0).getTextContent()));
         json.put("tipoHabitacion", tipoHabitacion);
 
         return json;
-    }
-
-    private static boolean sendToService(JSONObject json) {
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(ENDPOINT_URL))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(json.toString()))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.statusCode() >= 200 && response.statusCode() < 300;
-        } catch (IOException | InterruptedException e) {
-            System.err.println("Error HTTP: " + e.getMessage());
-            return false;
-        }
     }
 }

@@ -1,0 +1,82 @@
+[
+  {
+    "checkIn": "2025-05-01",
+    "checkOut": "2025-05-02",
+    "hotel": { "id": 1 },
+    "persona": { "id": 1 },
+    "numHabitaciones": 4,
+    "tipoHabitacion": { "id": 2 }
+  },
+  {
+    "checkIn": "2025-05-02",
+    "checkOut": "2025-05-03",
+    "hotel": { "id": 1 },
+    "persona": { "id": 2 },
+    "numHabitaciones": 9,
+    "tipoHabitacion": { "id": 1 }
+  },
+  {
+    "checkIn": "2025-05-03",
+    "checkOut": "2025-05-04",
+    "hotel": { "id": 1 },
+    "persona": { "id": 2 },
+    "numHabitaciones": 6,
+    "tipoHabitacion": { "id": 1 }
+  },
+  {
+    "checkIn": "2025-05-04",
+    "checkOut": "2025-05-05",
+    "hotel": { "id": 1 },
+    "persona": { "id": 1 },
+    "numHabitaciones": 3,
+    "tipoHabitacion": { "id": 2 }
+  },
+  {
+    "checkIn": "2025-05-05",
+    "checkOut": "2025-05-06",
+    "hotel": { "id": 1 },
+    "persona": { "id": 1 },
+    "numHabitaciones": 10,
+    "tipoHabitacion": { "id": 2 }
+  },
+  {
+    "checkIn": "2025-05-06",
+    "checkOut": "2025-05-07",
+    "hotel": { "id": 1 },
+    "persona": { "id": 2 },
+    "numHabitaciones": 5,
+    "tipoHabitacion": { "id": 1 }
+  },
+  {
+    "checkIn": "2025-05-07",
+    "checkOut": "2025-05-08",
+    "hotel": { "id": 1 },
+    "persona": { "id": 2 },
+    "numHabitaciones": 2,
+    "tipoHabitacion": { "id": 2 }
+  },
+  {
+    "checkIn": "2025-05-08",
+    "checkOut": "2025-05-09",
+    "hotel": { "id": 1 },
+    "persona": { "id": 1 },
+    "numHabitaciones": 8,
+    "tipoHabitacion": { "id": 1 }
+  },
+  {
+    "checkIn": "2025-05-09",
+    "checkOut": "2025-05-10",
+    "hotel": { "id": 1 },
+    "persona": { "id": 1 },
+    "numHabitaciones": 1,
+    "tipoHabitacion": { "id": 2 }
+  },
+  {
+    "checkIn": "2025-05-10",
+    "checkOut": "2025-05-11",
+    "hotel": { "id": 1 },
+    "persona": { "id": 2 },
+    "numHabitaciones": 7,
+    "tipoHabitacion": { "id": 1 }
+  }
+]

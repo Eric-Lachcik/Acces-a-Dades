@@ -1,8 +1,8 @@
 package com.example.ADU7EX01_EL_Franky.Ingestors.Mongo;
 
 
-import com.example.ADU7EX01_EL_Franky.Services.PostService;
-import com.mongodb.client.result.UpdateResult;
+import java.util.List;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -14,7 +14,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.example.ADU7EX01_EL_Franky.Services.PostService;
+import com.mongodb.client.result.UpdateResult;
 
 @Component
 public class ReservaMongoImporter {
@@ -27,8 +28,8 @@ public class ReservaMongoImporter {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    // Recogida de datos cada 300 segundos
-    @Scheduled(fixedRate = 60000)
+    // Recogida de datos cada 120 segundos
+    @Scheduled(fixedRate = 12000)
     public void importarDesdeMongo() {
         try {
             // Crea una consulta para obtener solo documentos no procesados

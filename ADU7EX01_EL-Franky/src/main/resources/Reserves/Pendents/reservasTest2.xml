@@ -1,0 +1,14 @@
+<reserva>
+    <checkIn>2025-05-02</checkIn>
+    <checkOut>2025-05-11</checkOut>
+    <hotel>
+        <id>2</id>
+    </hotel>
+    <persona>
+        <id>2</id>
+    </persona>
+    <numHabitaciones>1</numHabitaciones>
+    <tipoHabitacion>
+        <id>2</id>
+    </tipoHabitacion>
+</reserva>

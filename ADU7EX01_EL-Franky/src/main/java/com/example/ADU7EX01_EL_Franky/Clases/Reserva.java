@@ -14,39 +14,40 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
-
+// Entity Reserva
 @Entity
 @Table(name = "reserva")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Reserva {
+    // Id de la Reserva
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
+    // Fecha de check-in
     @Column(name = "check_in", nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy") // Formato esperado
     private LocalDate checkIn;
-
+    // Fecha de check-out
     @Column(name = "check_out", nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy") // Formato esperado
     private LocalDate checkOut;
-
+    // Numero de habitaciones
     @Column(name = "num_habitaciones")
     private Integer numHabitaciones;
-
+    // Hotel al que pertenece la reserva
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
-
+    // Persona que realiza la reserva
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "persona_id")
     private Persona persona;
-
+    // Tipo de habitacion
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_habitacion_id")
     private TipoHabitacion tipoHabitacion;
-
+    // getters y setters
     public Integer getId() {
         return id;
     }

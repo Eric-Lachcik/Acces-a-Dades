@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/vistas/reservas")
 public class ReservaView {
+    // Repositorios de reservas, hoteles, personas y tipos de habitación
     private final ReservaRepository reservaRepository;
     private final HotelRepository hotelRepository;
     private final PersonaRepository personaRepository;
     private final TipoHabitacionRepository tipoHabitacionRepository;
 
-
+    // Constructor para inyectar los repositorios
     public ReservaView(ReservaRepository reservaRepository, HotelRepository hotelRepository, PersonaRepository personaRepository, TipoHabitacionRepository tipoHabitacionRepository) {
             this.reservaRepository = reservaRepository;
             this.hotelRepository = hotelRepository;
@@ -25,12 +26,13 @@ public class ReservaView {
             this.tipoHabitacionRepository = tipoHabitacionRepository;
     }
 
+    // Métodos para manejar las vistas de reservas
     @GetMapping("/listar")
     public String listarReservas(Model model) {
         model.addAttribute("titulo", "Listado de Reservas");
         return "reservas/lista";
     }
-
+    // Método para mostrar el formulario de edición de reservas
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Integer id, Model model) {
         Reserva reserva = reservaRepository.findById(id)
@@ -43,7 +45,7 @@ public class ReservaView {
 
         return "reservas/editar";
     }
-
+    // Método para inyectar el formulario de edición de reservas
     @PutMapping("/editar/{id}")
     public String actualizarReserva(@PathVariable Integer id, @ModelAttribute Reserva reservaActualizada) {
         reservaRepository.findById(id).ifPresent(reserva -> {

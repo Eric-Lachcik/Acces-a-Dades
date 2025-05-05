@@ -16,17 +16,18 @@ import com.example.ADU7EX01_EL_Franky.Repositorys.HotelRepository;
 @RestController
 @RequestMapping("/hoteles")
 public class HotelController {
+    // Repositorio de hoteles
     private final HotelRepository hotelRepository;
 
     public HotelController(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
-
+    // Obtener todos los hoteles
     @GetMapping
     public List<Hotel> getAllHoteles() {
         return hotelRepository.findAll();
     }
-
+    // Crear un nuevo hotel
     @PostMapping
     public ResponseEntity<Hotel> crearProducte(@RequestBody Hotel hotel) {
         Hotel nouHotel = hotelRepository.save(hotel);

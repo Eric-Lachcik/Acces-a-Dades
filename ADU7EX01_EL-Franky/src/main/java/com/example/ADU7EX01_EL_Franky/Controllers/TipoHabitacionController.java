@@ -11,19 +11,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/tipoHabitaciones")
 public class TipoHabitacionController {
-
+    // Repositorio de tipos de habitación
     private final TipoHabitacionRepository tipoHabitacionRepository;
 
     public TipoHabitacionController(TipoHabitacionRepository tipoHabitacionRepository) {
         this.tipoHabitacionRepository = tipoHabitacionRepository;
     }
-
+    // Obtener todos los tipos de habitación
     @GetMapping
     public List<TipoHabitacion> getAllTiposHabitacion() {
         return tipoHabitacionRepository.findAll();
     }
 
-
+    // Crear un nuevo tipo de habitación
     @PostMapping
     public ResponseEntity<TipoHabitacion> crearProducte(@RequestBody TipoHabitacion tipohabitacion) {
         TipoHabitacion nouTipoHabitacion = tipoHabitacionRepository.save(tipohabitacion);

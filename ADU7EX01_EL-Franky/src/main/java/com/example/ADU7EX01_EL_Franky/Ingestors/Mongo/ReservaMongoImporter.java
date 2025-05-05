@@ -59,7 +59,6 @@ public class ReservaMongoImporter {
                     Query updateQuery = new Query(Criteria.where("_id").is(id));
                     Update update = new Update().set("procesado", true);
                     UpdateResult result = mongoTemplate.updateFirst(updateQuery, update, COLLECTION);
-
                     System.out.println("Documento marcado como procesado: " + result.getModifiedCount());
                 }
             }

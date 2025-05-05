@@ -10,9 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/cadenas")
 public class CadenaController {
-
+    // Repositorio de cadenas
     private final CadenaRepository cadenaRepository;
-
+    
     public CadenaController(CadenaRepository cadenaRepository) {
         this.cadenaRepository = cadenaRepository;
     }
@@ -23,7 +23,7 @@ public class CadenaController {
         return cadenaRepository.findAll();
     }
 
-
+    // Crear una nueva cadena
     @PostMapping
     public ResponseEntity<Cadena> crearProducte(@RequestBody Cadena cadena) {
         Cadena nouCadena = cadenaRepository.save(cadena);

@@ -15,28 +15,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
+// Entity TipoHabitacion
 @Entity
 @Table(name = "tipo_habitacion")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class TipoHabitacion {
+    // Id del tipo de habitacion   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
+    // Nombre del tipo de habitacion
     @Column(name = "nombre", nullable = false)
     private String nombre;
-
+    // Hotel al que pertenece el tipo de habitacion
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     @JsonIgnore
     private Hotel hotel;
-
+    // Reservas del tipo de habitacion
     @JsonIgnore
     @OneToMany(mappedBy = "tipoHabitacion")
     private Set<Reserva> reservas = new LinkedHashSet<>();
-
+    // getters y setters
     public Integer getId() {
         return id;
     }

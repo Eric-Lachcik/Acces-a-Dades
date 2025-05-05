@@ -11,18 +11,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/personas")
 public class PersonaController {
-
+    // Repositorio de personas
     private final PersonaRepository personaRepository;
 
     public PersonaController(PersonaRepository personaRepository) {
         this.personaRepository = personaRepository;
     }
-
+    // Obtener todas las personas
     @GetMapping
     public List<Persona> getAllPersonas() {
         return personaRepository.findAll();
     }
-
+    // Crear una nueva persona
     @PostMapping
     public ResponseEntity<Persona> crearProducte(@RequestBody Persona persona) {
         Persona nouPersona = personaRepository.save(persona);

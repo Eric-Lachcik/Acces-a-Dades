@@ -54,6 +54,7 @@ public class ReservaBatchImporter {
 
             // Mueve el archivo a la carpeta de éxito o error según el resultado
             Path targetPath = Paths.get(success ? CORRECTE_DIR : ERROR_DIR, filePath.getFileName().toString());
+            
             Files.move(filePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 
             System.out.println("Fitxer " + filePath.getFileName() + " -> " + (success ? "correcte" : "error"));

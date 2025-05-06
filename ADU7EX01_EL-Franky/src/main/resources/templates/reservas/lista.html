@@ -12,6 +12,7 @@
     </div>
     <div class="card-body">
         <div class="d-flex flex-start align-items-end mb-3">
+            <!-- Botón que activa la función cargarReservas() -->
             <div class="px-3">
                 <button class="btn btn-primary" onclick="cargarReservas()">Mostrar Reservas</button>
             </div>
@@ -27,6 +28,7 @@
                 <button class="btn btn-success" onclick="buscarReservasPorFecha()">Buscar por Fecha</button>
             </div>
         </div>
+        <!-- Tabla principal donde se muestran las Tablas -->
         <div id="reservasContainer" style="display: none;">
             <table class="table table-striped">
                 <thead>
@@ -46,6 +48,7 @@
 </div>
 
 <script>
+    // Función para buscar reservas por fecha
     function buscarReservasPorFecha() {
         const fecha = document.getElementById('inputFecha').value;
         if (!fecha) {
@@ -87,6 +90,7 @@
                 document.getElementById('reservasContainer').style.display = 'block';
             });
     }
+    // Función para cargar todas las reservas
     function cargarReservas() {
         fetch('/reservas')
             .then(response => response.json())
@@ -122,7 +126,7 @@
                 document.getElementById('reservasContainer').style.display = 'block';
             });
     }
-
+    // Función para eliminar una reserva
     function eliminarReserva(id) {
         if (confirm('¿Estás seguro de querer eliminar esta reserva?')) {
             fetch(`/reservas/${id}`, {

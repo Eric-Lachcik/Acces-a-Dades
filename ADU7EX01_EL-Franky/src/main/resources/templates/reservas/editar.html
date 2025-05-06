@@ -11,12 +11,13 @@
         <h1>Editar Reserva #<span th:text="${reserva.id}"></span></h1>
     </div>
     <div class="card-body">
+        <!-- Formulario de Editar una Reserva -->
         <form th:action="@{/vistas/reservas/editar/{id}(id=${reserva.id})}"
               th:object="${reserva}"
               method="post">
 
             <input type="hidden" name="_method" value="put">
-
+            <!-- Fecha CheckIn -->
             <div class="mb-3">
                 <label class="form-label">Fecha Check-In</label>
                 <input
@@ -26,7 +27,7 @@
                         th:value="${#temporals.format(reserva.checkIn, 'dd/MM/yyyy')}"
                 placeholder="dd/mm/aaaa">
             </div>
-
+            <!-- Fecha CheckOut -->
             <div class="mb-3">
                 <label class="form-label">Fecha Check-Out</label>
                 <input
@@ -36,12 +37,12 @@
                         th:value="${#temporals.format(reserva.checkOut, 'dd/MM/yyyy')}"
                 placeholder="dd/mm/aaaa">
             </div>
-
+            <!-- Número de Habitaciones -->
             <div class="mb-3">
                 <label class="form-label">Número de Habitaciones</label>
                 <input type="number" class="form-control" th:field="*{numHabitaciones}">
             </div>
-
+            <!-- Hoteles -->
             <div class="mb-3">
                 <label class="form-label">Hotel</label>
                 <select class="form-select" th:field="*{hotel}">
@@ -52,7 +53,7 @@
                     </option>
                 </select>
             </div>
-
+            <!-- Persona de la Reserva -->
             <div class="mb-3">
                 <label class="form-label">Persona</label>
                 <select class="form-select" th:field="*{persona}">
@@ -63,7 +64,7 @@
                     </option>
                 </select>
             </div>
-
+            <!-- Tipo de Habitación -->
             <div class="mb-3">
                 <label class="form-label">Tipo de Habitación</label>
                 <select class="form-select" th:field="*{tipoHabitacion}">
@@ -74,7 +75,7 @@
                     </option>
                 </select>
             </div>
-
+            
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
             <a href="/vistas/reservas/listar" class="btn btn-secondary">Cancelar</a>
         </form>

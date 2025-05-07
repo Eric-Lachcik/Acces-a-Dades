@@ -29,7 +29,7 @@ public class HotelController {
     }
     // Crear un nuevo hotel
     @PostMapping
-    public ResponseEntity<Hotel> crearProducte(@RequestBody Hotel hotel) {
+    public ResponseEntity<Hotel> crearHotel(@RequestBody Hotel hotel) {
         Hotel nouHotel = hotelRepository.save(hotel);
         return new ResponseEntity<>(nouHotel, HttpStatus.CREATED);
     }
